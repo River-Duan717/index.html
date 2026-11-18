@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北海道 16 天冬日滑雪与跨年全攻略 (2026.12.21 - 2027.01.05)</title>
+<style>
+  :root {
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+    --primary-light: #e0f2fe;
+    --accent: #f59e0b;
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    --success: #16a34a;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .urgent-banner {
+    background: linear-gradient(90deg, #b91c1c, #dc2626);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .urgent-banner button {
+    background: #fff;
+    color: #b91c1c;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  header {
+    background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 60%, #38bdf8 100%);
+    color: white;
+    padding: 36px 20px 44px;
+    text-align: center;
+  }
+  header h1 { font-size: 28px; margin-bottom: 8px; }
+  header p { opacity: 0.92; font-size: 15px; max-width: 720px; margin: 0 auto 18px; }
+  .mode-bar {
+    display: inline-flex;
+    background: rgba(255,255,255,0.18);
+    padding: 4px;
+    border-radius: 999px;
+    gap: 4px;
+  }
+  .mode-btn {
+    border: none;
+    padding: 8px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    background: transparent;
+    transition: 0.2s;
+  }
+  .mode-btn.active { background: #fff; color: var(--primary-dark); }
+  .container { max-width: 1120px; margin: -24px auto 40px; padding: 0 16px; }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+    border: 1px solid var(--border);
+  }
+  .kpi-label { font-size: 13px; color: var(--muted); }
+  .kpi-val { font-size: 24px; font-weight: 800; color: var(--primary-dark); margin: 4px 0; }
+  .kpi-sub { font-size: 12px; color: var(--success); }
+  .section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.05);
+    border: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .section-title { font-size: 20px; font-weight: 800; color: var(--text); }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .badge-t1 { background: #fee2e2; color: #b91c1c; }
+  .badge-t2 { background: #ffedd5; color: #c2410c; }
+  .badge-t3 { background: #fef3c7; color: #b45309; }
+  .badge-ok { background: #dcfce7; color: #15803d; }
+  .reminder-card {
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--primary);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    background: #fcfdfe;
+  }
+  .reminder-card.urgent-1 { border-left-color: #dc2626; background: #fffafa; }
+  .reminder-card.urgent-2 { border-left-color: #ea580c; }
+  .reminder-card.urgent-3 { border-left-color: #d97706; }
+  .step-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .step-box {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  .step-box label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--muted); }
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .btn:hover { background: var(--primary-dark); }
+  .btn-outline {
+    background: #fff;
+    color: var(--primary-dark);
+    border: 1px solid var(--primary);
+  }
+  .btn-outline:hover { background: var(--primary-light); }
+  .subsidy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 14px;
+  }
+  .subsidy-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    background: #f8fafc;
+  }
+  .subsidy-card.checked { border-color: var(--success); background: #f0fdf4; }
+  .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tab-btn {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .timeline-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .day-tag {
+    min-width: 96px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    font-size: 14px;
+  }
+  .couple-note {
+    display: none;
+    margin-top: 6px;
+    padding: 6px 10px;
+    background: #fdf2f8;
+    border-left: 3px solid #db2777;
+    color: #9d174d;
+    font-size: 13px;
+    border-radius: 4px;
+  }
+  body.couple-mode .couple-note { display: block; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+  th { background: var(--primary-light); color: var(--primary-dark); }
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 20px; }
+</style>
+</head>
+<body>
+
+<div class="urgent-banner" id="urgentBanner">
+  <span id="urgentBannerText">⏰ 正在扫描 3-2-1 价格订阅与截止日期提醒...</span>
+  <div>
+    <button onclick="document.getElementById('reminderSection').scrollIntoView({behavior:'smooth'})">查看 3-2-1 提醒步骤</button>
+    <button onclick="exportICS()" style="margin-left:6px;background:#fef3c7;color:#92400e;">导出手机日历(.ics)</button>
+  </div>
+</div>
+
+<header>
+  <h1>❄️ 北海道 16 天冬日滑雪与跨年全攻略</h1>
+  <p>福冈 (FUK) ⇄ 札幌 (CTS)｜2026年12月21日 – 2027年1月5日（15晚）｜全程札幌大本营 · 盘溪/札幌国际/手稻三雪场</p>
+  <div class="mode-bar">
+    <button class="mode-btn active" id="btnSolo" onclick="setTravelMode('solo')">🎒 单人留学生省钱模式</button>
+    <button class="mode-btn" id="btnCouple" onclick="setTravelMode('couple')">💑 情侣双人浪漫均摊模式</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">预计总支出 (<span id="kpiModeLabel">单人总计</span>)</div>
+      <div class="kpi-val" id="kpiTotalJpy">¥176,800</div>
+      <div class="kpi-sub" id="kpiTotalCny">约合 ¥8,486 人民币 (已扣减政府/学生优惠)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">住宿方案 (共 15 晚)</div>
+      <div class="kpi-val" id="kpiHotelCost">¥67,500</div>
+      <div class="kpi-sub" id="kpiHotelName">札幌市区青旅连住 (无需搬行李)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">滑雪与教练 (共 <span id="kpiSkiDays">6</span> 天)</div>
+      <div class="kpi-val" id="kpiSkiCost">¥53,500</div>
+      <div class="kpi-sub">盘溪(2天) → 札幌国际(3天) → 手稻(1-2天)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">政府补贴与学割已省</div>
+      <div class="kpi-val" id="kpiSavedCost">-¥11,600</div>
+      <div class="kpi-sub">含 JR学割8折 + 北海道冬季旅游优惠</div>
+    </div>
+  </div>
+
+  <div class="section" id="reminderSection">
+    <div class="section-header">
+      <div>
+        <div class="section-title">⏰ 价格订阅与截止日期「提前 3-2-1 天」阶梯提醒引擎</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px;">所有早鸟机票、政府补贴抢券、预约巴士及取消截止日，严格按 T-3天 / T-2天 / T-1天 分步预警</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <label style="font-size:13px;font-weight:700;">时间模拟沙盘：</label>
+        <input type="date" id="simDateInput" value="2026-11-18" onchange="renderReminders()" style="padding:6px 10px;border:1px solid #cbd5e1;border-radius:6px;">
+        <button class="btn btn-outline" onclick="requestNotif()">开启桌面通知</button>
+        <button class="btn" onclick="exportICS()">导出 .ics 日历闹钟</button>
+      </div>
+    </div>
+
+    <div id="reminderList"></div>
+
+    <div style="margin-top:16px;padding:14px;background:#f1f5f9;border-radius:10px;">
+      <strong style="font-size:14px;">➕ 添加自定义价格订阅/抢票提醒</strong>
+      <div class="controls-grid" style="margin-top:10px;">
+        <input type="text" id="newRemTitle" placeholder="提醒事项（如：定山溪私汤早鸟预约）">
+        <input type="date" id="newRemDate" value="2026-12-05">
+        <input type="text" id="newRemNote" placeholder="备注/价格目标（如：早鸟立减2000日元）">
+        <button class="btn" onclick="addCustomReminder()">加入 3-2-1 监控</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">🏨 自定义酒店与交通方式配置器</div>
+      <button class="btn btn-outline" onclick="saveState()">💾 保存当前配置到本地</button>
+    </div>
+    <div class="controls-grid">
+      <div class="form-group">
+        <label>住宿类型与名称</label>
+        <input type="text" id="hotelNameInput" value="札幌市区青旅 (THE STAY SAPPORO / 札幌站周边)" oninput="recalc()">
+      </div>
+      <div class="form-group">
+        <label>住宿模式（15晚总计）</label>
+        <select id="hotelModeSelect" onchange="recalc()">
+          <option value="fixed">全程固定连住 15 晚（零折腾推荐）</option>
+          <option value="split">分段组合：13晚札幌市区 + 1晚定山溪温泉 + 1晚小樽</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>每晚基础单价（日元 / 房间或床位）</label>
+        <input type="number" id="hotelPriceInput" value="4500" step="500" oninput="recalc()">
+      </div>
+      <div class="form-group">
+        <label>福冈 ⇄ 新千岁 往返机票方式</label>
+        <select id="flightSelect" onchange="recalc()">
+          <option value="28000">廉航早鸟/青年特惠往返 (¥28,000/人)</option>
+          <option value="34000">ANA/JAL 25岁以下青少年特惠票 (¥34,000/人)</option>
+          <option value="46000">跨年普通提前购票 (¥46,000/人)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>新千岁机场 ⇄ 札幌市区 交通方式</label>
+        <select id="airportTransferSelect" onchange="recalc()">
+          <option value="2460">JR 快速 Airport 号往返 (37分钟 · ¥2,460/人)</option>
+          <option value="3000">机场联络巴士直达大通/薄野往返 (¥3,000/人)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>计划滑雪总天数 & 教练课安排</label>
+        <select id="skiPlanSelect" onchange="recalc()">
+          <option value="6_group">滑雪 6 天 + 第1天日语团体初级班 (¥53,500/人)</option>
+          <option value="6_private">滑雪 6 天 + 半天中/英文私教拼课 (¥62,000/人)</option>
+          <option value="7_group">滑雪 7 天(含手稻夜滑) + 日语团体班 (¥59,800/人)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-title">🎫 北海道地方政府补贴与冬季旅游优惠查询</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px;">勾选可享受的补贴项目，系统自动计算并从总预算中抵扣（注意：12/29–1/3 跨年高峰多数地方政府补贴除外）</div>
+      </div>
+      <span class="badge badge-ok">可用补贴窗口：12/21–12/28 & 1/4</span>
+    </div>
+    <div class="subsidy-grid" id="subsidyGrid"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">⛷️ 札幌周边三大雪场先后顺序与中/英/日教学对照</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>先后顺序</th>
+          <th>雪场名称</th>
+          <th>建议天数</th>
+          <th>交通方式与预约要求</th>
+          <th>教学语言与留学生省钱建议</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>第 1 站</strong><br>(12/22–12/23)</td>
+          <td><strong>札幌盘溪滑雪场</strong><br>Sapporo Bankei</td>
+          <td>1～2 天<br>(破冰练刹车)</td>
+          <td>地铁圆山公园/发寒南站 + 接驳巴士（约30分钟，刷IC卡免预约）</td>
+          <td>有英文私教(仅双板 ¥25,000/1.5h)及多语言1小时体验课(含租赁¥10,000)；<strong>推荐日语2h团体课 ¥6,500</strong></td>
+        </tr>
+        <tr>
+          <td><strong>第 2 站</strong><br>(12/26–12/29)</td>
+          <td><strong>札幌国际滑雪场</strong><br>Sapporo Kokusai</td>
+          <td>3 天<br>(主力粉雪练弯)</td>
+          <td>JR札幌站北口直达巴士（约90分钟，<strong>必须提前官网预约往返座位</strong>，套票¥9,800）</td>
+          <td>官方英文私教(单/双板 ¥31,000/2h)，支持官方合作中文私教（建议青旅拼2-3人均摊约¥15,000/人）</td>
+        </tr>
+        <tr>
+          <td><strong>第 3 站</strong><br>(12/30 & 1/3)</td>
+          <td><strong>札幌手稻滑雪场</strong><br>Sapporo Teine</td>
+          <td>1～2 天<br>(6km长道+夜滑)</td>
+          <td>JR札幌站→JR手稻站(15分) + JR路线巴士(16-28分，刷IC卡免预约)</td>
+          <td>有官方英文私教及合法中文滑雪学校；<strong>夜场票(16:00-20:00)仅 ¥2,900</strong>，俯瞰札幌百万夜景</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">📅 16 天逐日行程时间轴（滑 2 休 1 科学节奏）</div>
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="filterDays('all', this)">全部 16 天</button>
+        <button class="tab-btn" onclick="filterDays('ski', this)">⛷️ 滑雪日</button>
+        <button class="tab-btn" onclick="filterDays('sight', this)">♨️ 观光与温泉</button>
+        <button class="tab-btn" onclick="filterDays('ny', this)">🎍 跨年与往返</button>
+      </div>
+    </div>
+    <div id="timelineContainer"></div>
+  </div>
+</div>
+
+<footer>
+  北海道 16 天冬日滑雪与跨年全攻略 · 纯静态单文件网页（可直接部署至 Netlify / Vercel / GitHub Pages）
+</footer>
+
+<script>
+  let travelMode = 'solo';
+
+  const defaultReminders = [
+    {
+      id: 'rem_flight',
+      title: '福冈 (FUK) ⇄ 新千岁 (CTS) 往返机票早鸟/青少年票锁定',
+      deadline: '2026-11-21',
+      steps: {
+        t3: '对比 Peach/Jetstar 廉航与 ANA/JAL 25岁以下青少年票余票及行李额',
+        t2: '确认同行人护照/学生证信息与 12/21 去、1/5 回精确航班时刻',
+        t1: '完成付款出票并保存电子行程单（防止跨年票价跳涨）'
+      },
+      done: { t3: false, t2: false, t1: false }
+    },
+    {
+      id: 'rem_hotel',
+      title: '札幌市区 15 晚连住住宿锁房（跨年满房预警）',
+      deadline: '2026-11-25',
+      steps: {
+        t3: '筛选靠近 JR 札幌站或大通/薄野机场巴士站的免费取消房源',
+        t2: '核对 12/21–1/5 连续 15 晚房态及冬季暖气/雪具寄存条件',
+        t1: '锁定最优惠连住价格，设置免费取消截止日二次提醒'
+      },
+      done: { t3: false, t2: false, t1: false }
+    },
+    {
+      id: 'rem_subsidy',
+      title: '北海道地方政府冬季旅游优惠 / 电子消费券抢购窗口',
+      deadline: '2026-12-01',
+      steps: {
+        t3: '注册 STAYNAVI / HOKKAIDO LOVE! 及札幌冬日住宿补贴合作平台账号',
+        t2: '确认 12/21–12/28 非跨年除外日期的住宿订单是否可叠加优惠码',
+        t1: '准点申领政府补贴券并绑定至已预订的酒店订单'
+      },
+      done: { t3: false, t2: false, t1: false }
+    },
+    {
+      id: 'rem_bus',
+      title: '札幌国际滑雪场「预约制直达巴士」与初级教练课预约',
+      deadline: '2026-12-12',
+      steps: {
+        t3: '确定 12/26、12/27、12/29 三天前往札幌国际的出发与回程班次',
+        t2: '在中央巴士官网预订「往返巴士+1日缆车套票 (¥9,800)」（务必同时约回程）',
+        t1: '在雪场官网 Webket 预约第 1 天上午初级滑雪课程名额'
+      },
+      done: { t3: false, t2: false, t1: false }
+    },
+    {
+      id: 'rem_gakuwari',
+      title: '大学事务窗口开具「JR 学割证」（旭川/长途 JR 8折必备）',
+      deadline: '2026-12-18',
+      steps: {
+        t3: '在学校自动证明书发行机或学生课申请「学校学生生徒旅客運賃割引証」',
+        t2: '检查学割证有效期限（开具后3个月内有效）及盖章完整性',
+        t1: '随身放入护照夹，抵达札幌站绿色窗口购买去旭川特急 8 折车票'
+      },
+      done: { t3: false, t2: false, t1: false }
+    },
+    {
+      id: 'rem_webket',
+      title: '出发前 1 晚 Webket 网购早鸟雪票 & 雪具租赁券',
+      deadline: '2026-12-21',
+      steps: {
+        t3: '查看未来 3 天札幌盘溪、札幌国际、手稻气象厅降雪与风速预报',
+        t2: '确认无暴风雪停运风险后，注册各雪场 Webket 会员账号',
+        t1: '前一天晚上手机下单次日早鸟电子雪票与租赁券（比现场买省 ¥500-1,000）'
+      },
+      done: { t3: false, t2: false, t1: false }
+    }
+  ];
+
+  const subsidies = [
+    {
+      id: 'sub_hokkaido',
+      name: 'HOKKAIDO LOVE! 割 / 电子地域优惠券',
+      saving: 4000,
+      period: '12/21–12/28 & 1/4 可用（12/29–1/3 除外）',
+      desc: '北海道道厅广域旅游支援，入住指定合作住宿每人每晚可获电子优惠券，可用于雪场餐饮与药妆购物。',
+      checked: true
+    },
+    {
+      id: 'sub_sapporo',
+      name: '札幌市冬日住宿与雪场连动补贴（サッポロ冬割系）',
+      saving: 5000,
+      period: '冬季平日/非跨年高峰限定',
+      desc: '针对札幌市内连住旅客发放的住宿立减或「Smile Coupon」，可直接在盘溪/手稻雪场及定山溪温泉抵扣。',
+      checked: true
+    },
+    {
+      id: 'sub_gakuwari',
+      name: '在日留学生专属：JR 学割证（运赁 8 折）',
+      saving: 2600,
+      period: '全程通用（无跨年除外日）',
+      desc: '凭日本大学开具的学割证，购买札幌 ⇄ 旭川等单程超 100km 的 JR 车票享受基本运赁 8 折优惠。',
+      checked: true
+    },
+    {
+      id: 'sub_jozankei',
+      name: '定山溪 / 小樽地方自治体观光体验套票补贴',
+      saving: 2000,
+      period: '12月下旬–1月上旬',
+      desc: '包含札幌站往返定山溪巴士 + 日归温泉入浴券的官方优惠套票，比单买车票与温泉门票节省约 ¥2,000。',
+      checked: false
+    }
+  ];
+
+  const itineraryDays = [
+    { day: 'Day 1 · 12/21', type: 'ny', title: '福冈 FUK → 新千岁 CTS → 入住札幌青旅', desc: '下午乘 JR 快速 Airport (37分钟) 抵达札幌站办理入住；傍晚逛大通公园慕尼黑圣诞市集、吃第一顿热汤咖喱。', couple: '💑 情侣彩蛋：大通公园电视塔下冬季白色灯树节合影，顺路逛狸小路药妆暖身。' },
+    { day: 'Day 2 · 12/22', type: 'ski', title: '【滑雪 Day 1】札幌盘溪滑雪场 · 零基础破冰', desc: '地铁+巴士30分钟直达。强烈建议上午报 2 小时初级班，掌握穿脱板、安全摔倒与刹车推坡。', couple: '💑 情侣彩蛋：双人同板种可拼 1 个中/英文教练，学费直接均摊省一半，还能互相拍第一次滑雪视频。' },
+    { day: 'Day 3 · 12/23', type: 'ski', title: '【滑雪 Day 2】札幌盘溪滑雪场 · 独立巩固练习', desc: '自己巩固昨日动作，做到能稳稳坐初级缆车滑下缓坡绿道，傍晚回薄野吃成吉思汗烤羊肉。', couple: '💑 情侣彩蛋：滑完去薄野吃札幌特色「夜帕菲 (シメパフェ)」，体验当地浪漫甜品文化。' },
+    { day: 'Day 4 · 12/24', type: 'sight', title: '【休整观光】小樽平安夜浪漫一日游', desc: 'JR 函馆本线 35 分钟直达小樽。白天三角市场吃海鲜丼、逛八音盒堂，16:30 拍蓝色灯光「青之运河」。', couple: '💑 情侣彩蛋：傍晚乘缆车登顶天狗山（电影《情书》取景地），俯瞰小樽港圣诞雪夜全景。' },
+    { day: 'Day 5 · 12/25', type: 'sight', title: '【休整观光】睡懒觉 + 白色恋人公园冬季灯光秀', desc: '圣诞节轻松休整，下午逛白色恋人巧克力工厂花园灯光秀，晚上提前准备好次日进山装备。', couple: '💑 情侣彩蛋：在白色恋人公园定制双人纪念铁盒饼干，圣诞夜氛围感拉满。' },
+    { day: 'Day 6 · 12/26', type: 'ski', title: '【滑雪 Day 3】札幌国际滑雪场 · 宽道粉雪首刷', desc: '札幌站北口乘预约制直达巴士进山，在极宽阔的天然粉雪道上大胆练习连续转弯与控速。', couple: '💑 情侣彩蛋：山顶咖啡厅俯瞰雪山林海，一起喝热可可拍照打卡。' },
+    { day: 'Day 7 · 12/27', type: 'ski', title: '【滑雪 Day 4】札幌国际滑雪场 + 顺路定山溪温泉', desc: '全天刷雪练习，15:30 乘巴士下山在「定山溪神社前」下车，泡露天岩石雪见温泉彻底消除肌肉酸痛。', couple: '💑 情侣彩蛋：可预约定山溪温泉旅馆的「贷切家族私汤（包场温泉）」，雪中私密泡汤。' },
+    { day: 'Day 8 · 12/28', type: 'sight', title: '【休整观光】旭川一日游（用学割证坐 JR）', desc: '持学校学割证买 JR 特急往返旭川，看冬季限定「旭山动物园企鹅雪地散步」，晚上赏旭川站前雪之轮灯饰。', couple: '💑 情侣彩蛋：在企鹅散步雪道旁并肩打卡，回程在札幌站买限定六花亭甜品。' },
+    { day: 'Day 9 · 12/29', type: 'ski', title: '【滑雪 Day 5】札幌国际滑雪场 · 技术进阶', desc: '三刷札幌国际，此时已能流畅滑下大部分绿道和宽阔红道，尽情享受北海道粉雪。', couple: '💑 情侣彩蛋：用运动相机/手机互相跟拍连续 S 弯视频，记录滑雪高光时刻。' },
+    { day: 'Day 10 · 12/30', type: 'ski', title: '【滑雪 Day 6】札幌手稻滑雪场 · 6公里超长林间道', desc: 'JR 至手稻站换乘路线巴士，挑战著名的 6 公里超长林间绿道 (Natural)，边滑边俯瞰札幌市区与日本海。', couple: '💑 情侣彩蛋：在手稻山顶圣火台（1972冬奥会遗址）前以石狩湾大海为背景合影。' },
+    { day: 'Day 11 · 12/31', type: 'ny', title: '【跨年夜】北海道神宫跨年倒数与屋台祭典', desc: '白天市区逛街采购跨年零食，晚上在青旅煮跨年荞麦面，零点前前往北海道神宫排队参加新年首次参拜。', couple: '💑 情侣彩蛋：在神宫祭典摊位买热甘酒与烤鱿鱼，一起听新年钟声许愿。' },
+    { day: 'Day 12 · 1/1', type: 'ny', title: '【元旦】元旦初诣 + 藻岩山日本新三大夜景', desc: '睡到自然醒，傍晚乘有轨电车与缆车登顶藻岩山，俯瞰新年第一晚的札幌璀璨雪夜。', couple: '💑 情侣彩蛋：敲响藻岩山顶「幸福之钟（恋人の聖地）」，锁上双人爱情锁。' },
+    { day: 'Day 13 · 1/2', type: 'ny', title: '【正月大促】札幌站 JR Tower / 大丸百货抢福袋', desc: '1月2日日本新年首卖（初売り），去札幌站商圈抢户外滑雪品牌、服饰与甜品超值新年福袋。', couple: '💑 情侣彩蛋：一起体验日本新年抢福袋乐趣，逛地下美食街吃热腾腾味噌拉面。' },
+    { day: 'Day 14 · 1/3', type: 'ski', title: '【滑雪 Day 7】札幌手稻滑雪场 · 浪漫夜景滑雪收官', desc: '下午进场买 5 小时券或夜场票 (16:00-20:00 仅 ¥2,900)，在灯光雪道下俯瞰札幌百万夜景完成毕业滑。', couple: '💑 情侣彩蛋：夜场灯光雪道极度浪漫，人少雪好，滑完回市区吃庆祝大餐。' },
+    { day: 'Day 15 · 1/4', type: 'sight', title: '【自由收尾】札幌啤酒博物馆 + 狸小路伴手礼采购', desc: '利用非跨年优惠日补齐白色恋人、薯条三兄弟等伴手礼，晚上整理打包全部行李箱。', couple: '💑 情侣彩蛋：在札幌啤酒园红砖建筑前合影，品尝限定生啤与烤肉晚餐。' },
+    { day: 'Day 16 · 1/5', type: 'ny', title: '札幌 → 新千岁机场逛吃 → 飞回福冈 (FUK)', desc: '退房乘 JR 快速 Airport 提前 2.5 小时抵达新千岁机场，逛国内线 2F/3F 拉面道场与甜品街后飞回福冈。', couple: '💑 情侣彩蛋：在机场买最后一支北海道浓厚牛乳冰淇淋，圆满结束 16 天旅程。' }
+  ];
+
+  let reminders = JSON.parse(localStorage.getItem('hk_reminders_v1')) || defaultReminders;
+
+  function setTravelMode(mode) {
+    travelMode = mode;
+    document.getElementById('btnSolo').classList.toggle('active', mode === 'solo');
+    document.getElementById('btnCouple').classList.toggle('active', mode === 'couple');
+    document.body.classList.toggle('couple-mode', mode === 'couple');
+    document.getElementById('kpiModeLabel').innerText = mode === 'solo' ? '单人总计' : '情侣人均(已均摊)';
+    recalc();
+  }
+
+  function renderSubsidies() {
+    const grid = document.getElementById('subsidyGrid');
+    grid.innerHTML = subsidies.map((s, idx) => `
+      <div class="subsidy-card ${s.checked ? 'checked' : ''}">
+        <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;">
+          <input type="checkbox" ${s.checked ? 'checked' : ''} onchange="toggleSubsidy(${idx})" style="margin-top:4px;">
+          <div>
+            <strong>${s.name}</strong>
+            <div style="color:#15803d;font-weight:700;font-size:13px;margin:2px 0;">预计人均立省：¥${s.saving.toLocaleString()}</div>
+            <div style="font-size:12px;color:#0369a1;margin-bottom:4px;">📅 ${s.period}</div>
+            <div style="font-size:12px;color:#475569;">${s.desc}</div>
+          </div>
+        </label>
+      </div>
+    `).join('');
+  }
+
+  function toggleSubsidy(idx) {
+    subsidies[idx].checked = !subsidies[idx].checked;
+    renderSubsidies();
+    recalc();
+  }
+
+  function recalc() {
+    const hotelName = document.getElementById('hotelNameInput').value || '札幌市区青旅';
+    const hotelMode = document.getElementById('hotelModeSelect').value;
+    let nightly = Number(document.getElementById('hotelPriceInput').value) || 4500;
+    const flight = Number(document.getElementById('flightSelect').value);
+    const airportTransfer = Number(document.getElementById('airportTransferSelect').value);
+    const skiPlan = document.getElementById('skiPlanSelect').value;
+
+    let hotelTotal = nightly * 15;
+    if (hotelMode === 'split') {
+      hotelTotal = nightly * 13 + 16000 + 11000;
+    }
+    if (travelMode === 'couple') {
+      hotelTotal = Math.round(hotelTotal * 0.65);
+    }
+
+    let skiDays = 6;
+    let skiCost = 53500;
+    if (skiPlan === '6_private') {
+      skiCost = travelMode === 'couple' ? 56000 : 62000;
+    } else if (skiPlan === '7_group') {
+      skiDays = 7;
+      skiCost = 59800;
+    }
+
+    const foodAndSight = 44000;
+    const saved = subsidies.filter(s => s.checked).reduce((acc, s) => acc + s.saving, 0);
+    const grandTotal = Math.max(0, hotelTotal + flight + airportTransfer + skiCost + foodAndSight - saved);
+
+    document.getElementById('kpiHotelName').innerText = hotelName;
+    document.getElementById('kpiHotelCost').innerText = '¥' + hotelTotal.toLocaleString();
+    document.getElementById('kpiSkiDays').innerText = skiDays;
+    document.getElementById('kpiSkiCost').innerText = '¥' + skiCost.toLocaleString();
+    document.getElementById('kpiSavedCost').innerText = '-¥' + saved.toLocaleString();
+    document.getElementById('kpiTotalJpy').innerText = '¥' + grandTotal.toLocaleString();
+    document.getElementById('kpiTotalCny').innerText = `约合 ¥${Math.round(grandTotal * 0.048).toLocaleString()} 人民币 (已扣减政府/学生优惠)`;
+  }
+
+  function renderReminders() {
+    const simStr = document.getElementById('simDateInput').value;
+    const simDate = new Date(simStr + 'T00:00:00');
+    const list = document.getElementById('reminderList');
+    let urgentAlerts = [];
+
+    list.innerHTML = reminders.map((r, idx) => {
+      const dl = new Date(r.deadline + 'T00:00:00');
+      const diffDays = Math.ceil((dl - simDate) / (1000 * 60 * 60 * 24));
+      let badgeHtml = '';
+      let cardClass = 'reminder-card';
+
+      if (diffDays < 0) {
+        badgeHtml = `<span class="badge" style="background:#e2e8f0;color:#475569;">已过截止日 (${r.deadline})</span>`;
+      } else if (diffDays === 0) {
+        badgeHtml = `<span class="badge badge-t1">🚨 今天最后截止！(${r.deadline})</span>`;
+        cardClass += ' urgent-1';
+        urgentAlerts.push(`【今日截止】${r.title}`);
+      } else if (diffDays === 1) {
+        badgeHtml = `<span class="badge badge-t1">🔥 T-1 预警：明天截止 (${r.deadline})</span>`;
+        cardClass += ' urgent-1';
+        urgentAlerts.push(`【提前1天预警】${r.title}`);
+      } else if (diffDays === 2) {
+        badgeHtml = `<span class="badge badge-t2">⚠️ T-2 预警：还剩 2 天 (${r.deadline})</span>`;
+        cardClass += ' urgent-2';
+        urgentAlerts.push(`【提前2天预警】${r.title}`);
+      } else if (diffDays === 3) {
+        badgeHtml = `<span class="badge badge-t3">⏰ T-3 预警：还剩 3 天 (${r.deadline})</span>`;
+        cardClass += ' urgent-3';
+        urgentAlerts.push(`【提前3天预警】${r.title}`);
+      } else {
+        badgeHtml = `<span class="badge badge-ok">距截止还有 ${diffDays} 天 (${r.deadline})</span>`;
+      }
+
+      return `
+        <div class="${cardClass}">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <strong style="font-size:15px;">${r.title}</strong>
+            ${badgeHtml}
+          </div>
+          <div class="step-grid">
+            <div class="step-box">
+              <label>
+                <input type="checkbox" ${r.done.t3 ? 'checked' : ''} onchange="toggleRemStep(${idx}, 't3')">
+                <span><strong>提前 3 天 (T-3)：</strong>${r.steps.t3}</span>
+              </label>
+            </div>
+            <div class="step-box">
+              <label>
+                <input type="checkbox" ${r.done.t2 ? 'checked' : ''} onchange="toggleRemStep(${idx}, 't2')">
+                <span><strong>提前 2 天 (T-2)：</strong>${r.steps.t2}</span>
+              </label>
+            </div>
+            <div class="step-box">
+              <label>
+                <input type="checkbox" ${r.done.t1 ? 'checked' : ''} onchange="toggleRemStep(${idx}, 't1')">
+                <span><strong>提前 1 天 (T-1)：</strong>${r.steps.t1}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const banner = document.getElementById('urgentBannerText');
+    if (urgentAlerts.length > 0) {
+      banner.innerText = '🚨 紧急价格订阅预警：' + urgentAlerts.join(' ｜ ');
+    } else {
+      banner.innerText = `✅ 当前模拟日期 (${simStr}) 暂无 T-3/T-2/T-1 紧急到期项，可切换沙盘日期测试提醒`;
+    }
+  }
+
+  function toggleRemStep(idx, step) {
+    reminders[idx].done[step] = !reminders[idx].done[step];
+    localStorage.setItem('hk_reminders_v1', JSON.stringify(reminders));
+  }
+
+  function addCustomReminder() {
+    const title = document.getElementById('newRemTitle').value.trim();
+    const deadline = document.getElementById('newRemDate').value;
+    const note = document.getElementById('newRemNote').value.trim() || '核对价格与预约名额';
+    if (!title || !deadline) return alert('请填写提醒事项名称和截止日期');
+    reminders.unshift({
+      id: 'rem_' + Date.now(),
+      title,
+      deadline,
+      steps: {
+        t3: `提前3天准备：查阅「${title}」最新规则（${note}）`,
+        t2: `提前2天核对：确认支付方式与出行日期匹配`,
+        t1: `提前1天锁单：完成最终预订与截屏保存凭证`
+      },
+      done: { t3: false, t2: false, t1: false }
+    });
+    localStorage.setItem('hk_reminders_v1', JSON.stringify(reminders));
+    document.getElementById('newRemTitle').value = '';
+    renderReminders();
+  }
+
+  function requestNotif() {
+    if (!('Notification' in window)) return alert('当前浏览器不支持系统桌面通知');
+    Notification.requestPermission().then(p => {
+      if (p === 'granted') {
+        new Notification('北海道行程提醒已开启', { body: '将在每个价格订阅截止前 3 天、2 天、1 天为您发送阶梯预警！' });
+      }
+    });
+  }
+
+  function exportICS() {
+    let lines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Hokkaido Ski Trip 2026//CN'
+    ];
+    reminders.forEach(r => {
+      const dt = r.deadline.replace(/-/g, '');
+      lines.push(
+        'BEGIN:VEVENT',
+        `UID:${r.id}@hokkaido2026`,
+        `DTSTAMP:${dt}T090000Z`,
+        `DTSTART;VALUE=DATE:${dt}`,
+        `SUMMARY:【截止日】${r.title}`,
+        `DESCRIPTION:T-3天: ${r.steps.t3}\\nT-2天: ${r.steps.t2}\\nT-1天: ${r.steps.t1}`,
+        'BEGIN:VALARM',
+        'TRIGGER:-P3D',
+        'ACTION:DISPLAY',
+        `DESCRIPTION:提前3天提醒：${r.title}`,
+        'END:VALARM',
+        'BEGIN:VALARM',
+        'TRIGGER:-P2D',
+        'ACTION:DISPLAY',
+        `DESCRIPTION:提前2天提醒：${r.title}`,
+        'END:VALARM',
+        'BEGIN:VALARM',
+        'TRIGGER:-P1D',
+        'ACTION:DISPLAY',
+        `DESCRIPTION:提前1天最后提醒：${r.title}`,
+        'END:VALARM',
+        'END:VEVENT'
+      );
+    });
+    lines.push('END:VCALENDAR');
+    const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Hokkaido_2026_321_Reminders.ics';
+    a.click();
+  }
+
+  function renderTimeline(filter = 'all') {
+    const container = document.getElementById('timelineContainer');
+    const filtered = filter === 'all' ? itineraryDays : itineraryDays.filter(d => d.type === filter);
+    container.innerHTML = filtered.map(d => `
+      <div class="timeline-item">
+        <div class="day-tag">${d.day}</div>
+        <div>
+          <strong>${d.title}</strong>
+          <div style="font-size:14px;color:#334155;margin-top:2px;">${d.desc}</div>
+          <div class="couple-note">${d.couple}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function filterDays(type, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTimeline(type);
+  }
+
+  function saveState() {
+    localStorage.setItem('hk_reminders_v1', JSON.stringify(reminders));
+    alert('✅ 当前住宿、交通、补贴及 3-2-1 提醒进度已保存到浏览器本地！');
+  }
+
+  renderSubsidies();
+  renderReminders();
+  renderTimeline();
+  recalc();
+</script>
+</body>
+</html>
