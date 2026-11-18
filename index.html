@@ -79,13 +79,17 @@
               </button>
             </div>
           </div>
-          <div class="border-l border-slate-200 pl-3 flex flex-wrap gap-2">
+          <div class="border-l border-slate-200 pl-3 flex flex-wrap items-end gap-2">
             <div>
               <label class="text-[11px] font-bold text-slate-400 block mb-1">2. 去程/入住日</label>
               <input type="date" id="inp-checkin" value="2026-12-21" onchange="handleDateChange('checkin')" class="text-xs font-bold bg-white border border-slate-300 rounded-lg px-2 py-1.5" />
             </div>
             <div>
-              <label class="text-[11px] font-bold text-slate-400 block mb-1">3. 返程/退房日</label>
+              <label class="text-[11px] font-bold text-slate-400 block mb-1">3. 行程总天数</label>
+              <input type="number" id="inp-tripdays" value="16" min="2" max="30" onchange="handleTripDaysChange()" class="w-16 text-xs font-bold bg-white border border-sky-400 rounded-lg px-2 py-1.5 text-sky-900" title="修改总天数会自动推算返程日期" />
+            </div>
+            <div>
+              <label class="text-[11px] font-bold text-slate-400 block mb-1">4. 返程/退房日</label>
               <input type="date" id="inp-checkout" value="2027-01-05" onchange="handleDateChange('checkout')" class="text-xs font-bold bg-white border border-slate-300 rounded-lg px-2 py-1.5" />
             </div>
           </div>
@@ -120,7 +124,7 @@
             <input type="number" id="inp-hotel" onchange="recalc()" class="mt-1 w-full font-bold text-lg bg-white border border-slate-300 rounded px-2 py-1" />
           </div>
           <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-            <label class="text-xs text-slate-500 block">预计滑雪总天数 (天)</label>
+            <label class="text-xs text-slate-500 block">预计滑雪总天数 (仅算雪票)</label>
             <input type="number" id="inp-skidays" min="1" max="20" onchange="recalc()" class="mt-1 w-full font-bold text-lg bg-white border border-slate-300 rounded px-2 py-1" />
           </div>
           <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
@@ -165,7 +169,6 @@
 
     <!-- 核心攻略区：第一优先级青旅选址 + 前4天低价学滑雪套票 -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <!-- 左侧：第一优先级青旅选址 + 第二优先级拿补贴技巧 -->
       <div class="card p-6 border-indigo-200 bg-gradient-to-br from-indigo-50/40 to-white flex flex-col justify-between">
         <div>
           <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-bold px-2.5 py-0.5 rounded-full mb-1">
@@ -189,7 +192,6 @@
         </div>
       </div>
 
-      <!-- 右侧：前4天低价学滑雪套票精算 -->
       <div class="card p-6 border-emerald-200 bg-gradient-to-br from-emerald-50/40 to-white flex flex-col justify-between">
         <div>
           <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-0.5 rounded-full mb-1">
@@ -232,7 +234,7 @@
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
         <div>
           <h2 class="text-lg font-bold text-slate-900">🎯 全网多平台自动填参比价与订票清单</h2>
-          <p class="text-xs text-slate-500">住宿已默认锁定「札幌薄野/中岛公园高性价比青旅」关键词并预填日期与人数；锁单后填入实付日元自动重算预算</p>
+          <p class="text-xs text-slate-500">支持URL传参的平台已自动带入日期与人数；部分日本官网（如乐桃）不支持外部传参需手动选日期</p>
         </div>
       </div>
       <div id="checklist-container" class="space-y-4"></div>
@@ -242,7 +244,7 @@
     <div class="card p-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-100">
         <div>
-          <h2 class="text-lg font-bold text-slate-900">🗓️ 16天逐日活动全排期（含前4天低价学滑雪入门 + 对应交通官网）</h2>
+          <h2 class="text-lg font-bold text-slate-900">🗓️ 逐日活动全排期（含前4天低价学滑雪入门 + 对应交通官网）</h2>
           <p class="text-xs text-slate-500 mt-0.5">每天上下午+晚间活动全排满，日期随顶部出发日自动顺延更新</p>
         </div>
         <div class="flex flex-wrap gap-1.5 text-xs">
@@ -278,7 +280,7 @@
           </span>
           <h2 class="text-lg font-bold text-white">🆘 暴风雪停运与雪场突发应急预案</h2>
         </div>
-        <span class="text-xs text-slate-400">💡 已接通真实离线缓存（sw.js），雪场断网刷新依然秒开</span>
+        <span class="text-xs text-slate-400">💡 正常窗口（非隐私模式）访问一次后，断网刷新依然秒开</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300 leading-relaxed">
@@ -341,9 +343,26 @@
       return JSON.parse(jsonStr);
     }
 
+    // 新增：修改顶部「3. 行程总天数」自动推算返程日期
+    function handleTripDaysChange() {
+      const inEl = document.getElementById("inp-checkin");
+      const daysEl = document.getElementById("inp-tripdays");
+      const outEl = document.getElementById("inp-checkout");
+      if (!inEl.value) return;
+
+      const days = Math.max(2, Math.min(30, Number(daysEl.value) || 16));
+      daysEl.value = days;
+      const dIn = new Date(inEl.value + "T00:00:00");
+      const dOut = new Date(dIn);
+      dOut.setDate(dIn.getDate() + (days - 1));
+      outEl.value = dOut.toISOString().split("T")[0];
+      recalc();
+    }
+
     function handleDateChange(changedField) {
       const inEl = document.getElementById("inp-checkin");
       const outEl = document.getElementById("inp-checkout");
+      const daysEl = document.getElementById("inp-tripdays");
       if (!inEl.value || !outEl.value) return;
 
       const dIn = new Date(inEl.value + "T00:00:00");
@@ -351,8 +370,9 @@
 
       if (dOut <= dIn) {
         if (changedField === "checkin") {
+          const curDays = Math.max(2, Number(daysEl.value) || 16);
           const nextDay = new Date(dIn);
-          nextDay.setDate(dIn.getDate() + 1);
+          nextDay.setDate(dIn.getDate() + (curDays - 1));
           outEl.value = nextDay.toISOString().split("T")[0];
         } else {
           alert("⚠️ 返程/退房日期不能早于或等于去程/入住日期，已自动调整为次日。");
@@ -415,27 +435,27 @@
           budgetHint: "填人均往返总价(JPY)自动同步顶部机票预算",
           title: `福冈 (FUK) ⇄ 札幌新千岁 (CTS) 往返机票（自动预填 ${adults} 成人 · ${dep} 去 / ${ret} 返）`,
           deadline: "2026-11-21",
-          desc: "建议优先用 Google Flights 查看全航司日历底价与廉航(Peach/Jetstar)余票，再对照携程与同程含税总价锁定。",
+          desc: "Google Flights、携程、同程已自动填好 FUK⇄CTS 与日期人数；Peach 乐桃官网不支持外链传参，需点开后手动选择福冈→札幌。",
           links: [
             {
-              label: "🔍 Google Flights 实时比价",
+              label: "🔍 Google Flights (已填日期人数)",
               url: `https://www.google.com/travel/flights?q=Flights%20to%20CTS%20from%20FUK%20on%20${dep}%20through%20${ret}%20${adults}%20adults`,
               style: "bg-blue-600 text-white"
             },
             {
-              label: "🇯🇵 Peach 乐桃航空官网",
-              url: "https://www.flypeach.com/cn",
-              style: "bg-fuchsia-700 text-white"
-            },
-            {
-              label: "🐬 携程机票预填直达",
+              label: "🐬 携程机票 (已填日期人数)",
               url: `https://flights.ctrip.com/online/list/round-fuk-cts?depdate=${dep}&retdate=${ret}&adult=${adults}`,
               style: "bg-sky-50 text-sky-700 border border-sky-200"
             },
             {
-              label: "🦢 同程国际机票直达",
+              label: "🦢 同程机票 (已填日期人数)",
               url: `https://www.ly.com/iflight/flight-book1.html?from=FUK&to=CTS&date=${dep}&backdate=${ret}&adult=${adults}`,
               style: "bg-emerald-50 text-emerald-700 border border-emerald-200"
+            },
+            {
+              label: "🇯🇵 Peach 乐桃官网 (需手动选日期)",
+              url: "https://www.flypeach.com/cn",
+              style: "bg-fuchsia-700 text-white"
             }
           ]
         },
@@ -444,37 +464,32 @@
           budgetHint: `填${los}晚人均住宿总价(JPY)自动反算每晚均价`,
           title: `札幌黄金地铁口青旅锁定（优先薄野/中岛公园/札幌站 · ${dep} 入住 / ${ret} 退房 · 共 ${los} 晚 · ${adults} 人）`,
           deadline: "2026-11-25",
-          desc: "第一优先级锁定「薄野站/中岛公园站/札幌站」5分钟圈带干燥室的青旅；第二优先级建议拆成 12/21-12/29 与 12/29-1/5 两段订，最大化拿北海道冬割/地域优惠券！",
+          desc: "已修复 Agoda 传参结构（直接按札幌 city=16310 + 入住日期与晚数检索）；进入列表后在左侧勾选「青年旅舍 / 薄野」即可。",
           links: [
             {
-              label: "🏨 Agoda 札幌青旅比价",
-              url: `https://www.agoda.com/zh-cn/search?city=16310&checkIn=${dep}&los=${los}&rooms=1&adults=${adults}&textToSearch=Susukino%20Hostel`,
+              label: "🏨 Agoda 札幌比价 (已填日期人数)",
+              url: `https://www.agoda.com/zh-cn/search?city=16310&checkIn=${dep}&los=${los}&rooms=1&adults=${adults}`,
               style: "bg-indigo-600 text-white"
             },
             {
-              label: "🇯🇵 じゃらん(Jalan)北海道冬割",
-              url: "https://www.jalan.net/010000/LRG_010200/",
-              style: "bg-amber-600 text-white"
-            },
-            {
-              label: "🏠 Airbnb 爱彼迎民宿",
+              label: "🏠 Airbnb 爱彼迎 (已填日期人数)",
               url: `https://www.airbnb.cn/s/Susukino--Sapporo--Hokkaido/homes?checkin=${dep}&checkout=${ret}&adults=${adults}`,
               style: "bg-rose-500 text-white"
             },
             {
-              label: "🌐 Google Travel 青旅比价",
+              label: "🌐 Google Travel 酒店 (已填日期)",
               url: `https://www.google.com/travel/hotels/Sapporo?q=Sapporo%20Susukino%20hostel&checkin=${dep}&checkout=${ret}&adults=${adults}`,
               style: "bg-blue-50 text-blue-700 border border-blue-200"
             },
             {
-              label: "🐬 携程薄野/札幌青旅",
-              url: `https://hotels.ctrip.com/hotels/list?city=641&checkin=${dep}&checkout=${ret}&adult=${adults}&keyword=%E8%96%84%E9%87%8E%E9%9D%92%E6%97%85`,
+              label: "🐬 携程札幌酒店 (已填日期人数)",
+              url: `https://hotels.ctrip.com/hotels/list?city=641&checkin=${dep}&checkout=${ret}&adult=${adults}`,
               style: "bg-sky-50 text-sky-700 border border-sky-200"
             },
             {
-              label: "🦢 同程札幌青旅搜索",
-              url: `https://www.ly.com/hotel/ihotel/list?cityName=%E6%9C%AD%E5%B9%8C&inDate=${dep}&outDate=${ret}`,
-              style: "bg-emerald-50 text-emerald-700 border border-emerald-200"
+              label: "🇯🇵 じゃらん(Jalan)冬割查询",
+              url: "https://www.jalan.net/010000/LRG_010200/",
+              style: "bg-amber-600 text-white"
             }
           ]
         },
@@ -649,6 +664,7 @@
       const d2 = new Date(appState.checkout + "T00:00:00");
       const nights = Math.max(1, Math.round((d2 - d1) / (1000 * 60 * 60 * 24)));
       const days = nights + 1;
+      document.getElementById("inp-tripdays").value = days;
       document.getElementById("nights-label").textContent = `${nights}晚${days}天`;
 
       let hotelTotal = appState.hotel * nights;
