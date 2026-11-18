@@ -1,0 +1,31 @@
+name: Hokkaido Ticket Monitor
+
+on:
+  schedule:
+    # 每隔 2 小时自动巡检一次（UTC 时间，对应日本时间全天整点）
+    - cron: '0 */2 * * *'
+  # 允许在 GitHub Actions 页面手动一键测试运行
+  workflow_dispatch:
+
+jobs:
+  check-tickets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Playwright and Chromium
+        run: |
+          pip install playwright
+          playwright install chromium
+
+      - name: Run monitor script
+        env:
+          BARK_KEY: ${{ secrets.BARK_KEY }}
+          SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+        run: python monitor.py
