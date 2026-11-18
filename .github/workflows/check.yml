@@ -2,10 +2,11 @@ name: Hokkaido Ticket Monitor
 
 on:
   schedule:
-    # 每隔 2 小时自动巡检一次（UTC 时间，对应日本时间全天整点）
     - cron: '0 */2 * * *'
-  # 允许在 GitHub Actions 页面手动一键测试运行
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   check-tickets:
@@ -29,3 +30,10 @@ jobs:
           BARK_KEY: ${{ secrets.BARK_KEY }}
           SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
         run: python monitor.py
+
+      - name: Commit updated monitor state
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add monitor_state.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update ticket monitor state" && git push)
