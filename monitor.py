@@ -14,7 +14,7 @@ TARGETS = [
     {
         "id": "chuo_bus_kokusai",
         "name": "北海道中央巴士·札幌国际滑雪场预约套票",
-        "url": "https://www.chuo-bus.co.jp/sightseeing/ski/sapporo-kokusai.php",
+        "url": "https://teikan.chuo-bus.co.jp/course/16756](https://teikan.chuo-bus.co.jp/course/16756",
         "watch_keywords": ["予約", "受付中", "販売中", "12月", "空席"],
         "note": "官方页面内容有更新！请立即核对 12/26、12/27、12/29 往返巴士套票是否开放预约。"
     },
