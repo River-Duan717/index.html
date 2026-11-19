@@ -12,18 +12,19 @@ STATE_FILE = "monitor_state.json"
 # 聚焦 11月下旬最核心的 2 个高价值目标
 TARGETS = [
     {
-        "id": "chuo_bus_kokusai",
-        "name": "北海道中央巴士·札幌国际滑雪场预约套票",
-        "url": "https://teikan.chuo-bus.co.jp/course/16756](https://teikan.chuo-bus.co.jp/course/16756",
-        "watch_keywords": ["予約", "受付中", "販売中", "12月", "空席"],
-        "note": "官方页面内容有更新！请立即核对 12/26、12/27、12/29 往返巴士套票是否开放预约。"
+        "name": "中央巴士-札幌國際滑雪場套票",
+        "url": "https://teikan.chuo-bus.co.jp/course/16756",
+        "keywords": ["予約", "空席", "申込", "2026"]
     },
     {
-        "id": "teine_webket",
-        "name": "札幌手稻滑雪场 Webket 线上购票状态",
+        "name": "盤溪滑雪場-SAJ新手大班課與套票",
+        "url": "https://www.bankei.co.jp/school/",
+        "keywords": ["予約", "受付", "レッスン", "2026"]
+    },
+    {
+        "name": "手稻滑雪場-Webket電子雪票",
         "url": "https://webket.jp/pc/ticket/index?fc=00368&ac=8001",
-        "watch_keywords": ["販売中", "購入", "リフト券", "ナイター"],
-        "note": "手稻雪场票务列表状态发生变化，请确认雪票与夜场券库存！"
+        "keywords": ["購入", "チケット", "リフト", "初級"]
     }
 ]
 
