@@ -1,9 +1,10 @@
-const CACHE_NAME = "hokkaido-6step-cache-v4";
+const CACHE_NAME = "hokkaido-6step-cache-v6";
 const ASSETS = ["./", "./index.html"];
 
 self.addEventListener("install", event => {
-  self.skipWaiting();
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener("activate", event => {

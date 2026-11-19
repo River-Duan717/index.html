@@ -9,22 +9,28 @@ BARK_KEY = os.getenv("BARK_KEY", "").strip()
 SERVERCHAN_KEY = os.getenv("SERVERCHAN_KEY", "").strip()
 STATE_FILE = "monitor_state.json"
 
-# 聚焦 11月下旬最核心的 2 个高价值目标
+# 聚焦 11月下旬最核心的 3 个高价值目标
 TARGETS = [
     {
+        "id": "chuo_bus_kokusai",
         "name": "中央巴士-札幌國際滑雪場套票",
+        "note": "請確認官方預約日期與空席。",
         "url": "https://teikan.chuo-bus.co.jp/course/16756",
-        "keywords": ["予約", "空席", "申込", "2026"]
+        "watch_keywords": ["予約", "空席", "申込", "2026"]
     },
     {
+        "id": "bankei_school",
         "name": "盤溪滑雪場-SAJ新手大班課與套票",
+        "note": "請確認官方課程日期與預約條件。",
         "url": "https://www.bankei.co.jp/school/",
-        "keywords": ["予約", "受付", "レッスン", "2026"]
+        "watch_keywords": ["予約", "受付", "レッスン", "2026"]
     },
     {
+        "id": "teine_webket",
         "name": "手稻滑雪場-Webket電子雪票",
+        "note": "請確認官方雪票種類與使用條件。",
         "url": "https://webket.jp/pc/ticket/index?fc=00368&ac=8001",
-        "keywords": ["購入", "チケット", "リフト", "初級"]
+        "watch_keywords": ["購入", "チケット", "リフト", "初級"]
     }
 ]
 
